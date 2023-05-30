@@ -178,7 +178,7 @@
 #newNoteTitle ,#updateNoteTitle{
     position: absolute;
     z-index: 1;
-    top: 55px;
+    top: 43px;
     width: 95%;
     margin-left: 15px;
     border: none;
@@ -188,7 +188,7 @@
      color: #435EBE;
      font-weight: bolder;
      letter-spacing: 1.1px;
-     background: transparent;
+     /* background: transparent; */
 }
 #newNoteTitle::placeholder,#updateNoteTitle::placeholder { 
   color: #435EBE;
@@ -238,7 +238,7 @@
 
         <form id="updateNoteForm" action="">
             
-            <p style="position: absolute; top:14px;">Created By : <b id="notesCreatedBy"></b></p>
+            <p style="position: absolute; top:14px; left: 7px;">Created By : <b id="notesCreatedBy"></b></p>
    <div class="notesBtnOuter">
    
     <button type="submit" class="btn btn-primary" id="updateNoteBtn">Update</button>
@@ -565,7 +565,7 @@ $('#cancelBtn1').click(function(){
             var noteData = {
                     noteId:openedNoteId,
                     noteTitle:$('#updateNoteTitle').val(),
-                    noteAbstract:$('#summernote1').val(),
+                    noteAbstract:`${$('#summernote1').val()}`,
                     };
                     console.log(noteData);
                     $.ajax({
