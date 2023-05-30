@@ -220,7 +220,7 @@
     <div class="col-md-6 col-12">
         <div class="form-group">
             <label for="campaign-id">Campaign ID</label>
-            <input type="number" id="campaign-id" class="form-control"
+            <input type="text" id="campaign-id" class="form-control"
                 placeholder="Campaign ID" readonly>
         </div>
     </div>
@@ -370,6 +370,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item  ">
+                            <a href="notes.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Notes</span>
+                            </a>
+                        </li>
+
 
                     </ul>
                 </div>
@@ -389,7 +396,7 @@
             <div class="page-content">
                 <div class="row" style="justify-content: space-between;">
                     <div class=" col-lg-3 col-md-6">
-                        <div class="card" style="padding: 12px 10px; text-align: center;">
+                        <div class="card" style="padding: 12px 10px 3px 10px; text-align: center;">
                             
                                 <div class=" row" style="justify-content: space-between;">
                                     <h6 class="font-semibold text-muted" style="width: auto;">Overall Campaigns :</h6>
@@ -404,8 +411,8 @@
                     </div>
                     <div class=" col-lg-6 col-md-6">
                         <div class="card searchBoxOuter">
-                            <h5 class="font-extrabold mb-2 mt-1" id="search" style="text-align: center;">Search</h5>
-                            <input placeholder="Type here..." type="search" name="" id="dashSearch">
+                            <h6 class="font-extrabold mb-2 mt-1" id="search" style="text-align: center;">Search</h6>
+                            <input placeholder="Type here..." type="search" style="height: 33px;" name="" id="dashSearch">
                             <div class="autocom-box">
                                 <!-- here list are inserted from javascript -->
                               
@@ -415,7 +422,7 @@
                     </div>
 
                     <div class=" col-lg-3 col-md-6">
-                        <div class="card" style="padding: 14px 30px; text-align: center;">
+                        <div class="card" style="padding: 9px 30px; text-align: center;">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h5 class="font-semibold text-muted" id="userName"></h5>
@@ -428,14 +435,14 @@
 
 
 
-                <div class="row" >
+                <div class="row" style="margin-top: -10px;">
                     <form class="form" id="totalLinkForm" style="display: inline-block; width: auto;" >
 
                         <div class="column"
                             style="background: #ffffff; padding: 25px 25px 0px 25px; border-radius: 10px;">
                             <div class="  ">
                                 <div class="form-group">
-                                    <label for="client-code-select">Client Code</label>
+                                    <label for="client-code-select">Category</label>
                                     <fieldset class="form-group">
                                         <select class="form-select" id="client-code-select" style="width: 180px;">
                                             <option value="CS">CS</option>
@@ -448,45 +455,45 @@
 
                             <div class=" " style="display: table-caption;">
                                 <div class="form-group">
-                                    <label for="category-select">Category</label>
+                                    <label for="category-select">Client Code</label>
 
 
-                                    <!-- CS options -->
-                                    <fieldset class="form-group csOptions">
-                                        <select class="form-select" id="category-select" style="width: 180px;">
-                                            <option value="TGIF (email marketing)">TGIF</option>
-                                            <option value="ACE">ACE</option>
-                                            <option value="VIBE">VIBE</option>
-                                            <option value="IP">IP</option>
-                                            <option value="TAJ (ARC)">TAJ (ARC)</option>
-                                            <option value="RAY (INSTA)">RAY (INSTA)</option>
-                                            <option value="MTH">MTH</option>
-                                            <option value="Magento">Magento</option>
-                                            <option value="W8 (CS)">W8 (CS)</option>
-                                        </select>
-                                    </fieldset>
+                                 
+                                    <fieldset class="form-group ">
+                                        <select class="form-select" id="category-select" style="width: 180px;" required>
+                                            <option  value="">Select</option>
+                                            <!-- CS options -->
+                                            
+                                            <option class="csOptions" value="TGIF (email marketing)">TGIF (email marketing)</option>
+                                            <option class="csOptions" value="ALPHA (ACE)">ALPHA (ACE)</option>
+                                            <option class="csOptions" value="VIBE">VIBE</option>
+                                            <option class="csOptions" value="IP">IP</option>
+                                            <option class="csOptions" value="TAJ (ARC)">TAJ (ARC)</option>
+                                            <option class="csOptions" value="RAY (INSTA)">RAY (INSTA)</option>
+                                            <option class="csOptions" value="MTH">MTH</option>
+                                            <option class="csOptions" value="PHANTOM (Magento)">PHANTOM (Magento)</option>
+                                            <option class="csOptions" value="W8 (CS)">W8 (CS)</option>
+                                            <option class="csOptions" value="CIVIC">CIVIC</option>
+                                                        <option class="csOptions" value="EAGLE">EAGLE</option>
 
-                                    <!-- Survey options -->
-                                    <fieldset class="form-group surveyOptions" style="display: none;">
-                                        <select class="form-select" id="category-select" style="width: 180px;">
-                                            <option value="PKT">PKT</option>
-                                            <option value="API">API</option>
-                                            <option value="W8-RB">W8-RB</option>
-                                            <option value="W8-LE">W8-LE</option>
-                                            <option value="W8-LA">W8-LA</option>
-                                            <option value="W8-Techscore">W8-Techscore</option>
-                                            <option value="ITBP-Techscore">ITBP-Techscore</option>
-                                            <option value="MTH API">MTH API</option>
-                                            <option value="ITBP PKT (.NET)">ITBP PKT (.NET)</option>
-                                            <option value="Email ijp">Email IJP</option>
-                                        </select>
-                                    </fieldset>
+                                          <!-- Survey options -->
+                                       
+                                            <option class="surveyOptions" value="PKT">PKT</option>
+                                            <option class="surveyOptions" value="API">API</option>
+                                            <option class="surveyOptions" value="W8-RB">W8-RB</option>
+                                            <option class="surveyOptions" value="W8-LE">W8-LE</option>
+                                            <option class="surveyOptions" value="W8-LA">W8-LA</option>
+                                            <option class="surveyOptions" value="W8-Techscore">W8-Techscore</option>
+                                            <option class="surveyOptions" value="ITBP-Techscore">ITBP-Techscore</option>
+                                            <option class="surveyOptions" value="MTH API">MTH API</option>
+                                            <option class="surveyOptions" value="ITBP PKT (.NET)">ITBP PKT (.NET)</option>
+                                            <option class="surveyOptions" value="Email ijp">Email IJP</option>
+                                     
 
-                                    <!-- E Blast options -->
-                                    <fieldset class="form-group eblastOptions" style="display: none;">
-                                        <select class="form-select" id="category-select" style="width: 180px;">
-                                            <option value="ACE eblast">ACE eblast</option>
-                                            <option value="W8 eblast">W8 eblast</option>
+                                        <!-- E Blast options -->
+                                       
+                                            <option class="eblastOptions" value="ACE eblast">ACE eblast</option>
+                                        <option class="eblastOptions" value="W8 eblast">W8 eblast</option>
                                         </select>
                                     </fieldset>
                                 </div>
@@ -499,6 +506,7 @@
                                         <select class="form-select" id="country-select" style="width: 180px;">
                                             <option value="EU">EU</option>
                                             <option value="NON-EU">NON-EU</option>
+                                            <option value="Both">Both</option>
                                         </select>
                                     </fieldset>
                                 </div>
@@ -553,8 +561,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script  src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
-        <!-- this is dependency required to convert excel data to json -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
+      
     <script src="./assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
 
     <script>
@@ -582,24 +589,26 @@ var userDetails ;
         $('#userName').html(userDetails.firstname);
         $('#userId').html(userDetails.username);
         // ************************** below code change category acording to client code **********************
+        function changeCategory() {
+        if ($("#client-code-select").val()=='Survey') {
+        $(".csOptions").css("display", "none");
+        $(".eblastOptions").css("display", "none");                                         
+        $(".surveyOptions").css("display", "inline-block");
+      }else if($("#client-code-select").val()=='CS'){
+        $(".csOptions").css("display", "inline-block");
+        $(".surveyOptions").css("display", "none");     
+        $(".eblastOptions").css("display", "none");                                                                             
+      }else{
+        $(".csOptions").css("display", "none");
+        $(".surveyOptions").css("display", "none");                                         
+        $(".eblastOptions").css("display", "inline-block");                                         
 
-        $("#client-code-select").change(function () {
-          console.log('dfhf')
-            if ($(this).val() == 'Survey') {
-                $(".csOptions").css("display", "none");
-                $(".eblastOptions").css("display", "none");
-                $(".surveyOptions").css("display", "inline-block");
-            } else if ($(this).val() == 'CS') {
-                $(".csOptions").css("display", "inline-block");
-                $(".surveyOptions").css("display", "none");
-                $(".eblastOptions").css("display", "none");
-            } else {
-                $(".csOptions").css("display", "none");
-                $(".surveyOptions").css("display", "none");
-                $(".eblastOptions").css("display", "inline-block");
-
-            }
-        });
+      }
+    }changeCategory();
+    $("#client-code-select").change(function(){
+       
+        changeCategory();
+});
 //**************************************************
 $('.searchBoxOuter').focusin(function(){
     $(this).css('background','#f2f7ff');
@@ -616,7 +625,7 @@ $('.searchBoxOuter').focusout(function(){
         $('#dashSearch').on('input', function(e) {
             let userData = e.target.value;
             userData=userData.replaceAll(' ','-');
-
+            $('#dashSearch').val(userData);
             if (userData.length >= 4) {
                 // ajax code here to fetch list continuisly
                 $.ajax({
@@ -733,8 +742,8 @@ let tempDate = new Date();
                       encode: true,
                     }).done(function (data) {
                     data.forEach(element => {
-                       
-                      chartLinkTotal[new Date(element.Date).getDate()-2] += (element.EDM_link.split("$").length )
+                        let temp =element.Date.split('T');
+                      chartLinkTotal[new Date(temp[0]).getDate()-1] += (element.EDM_link.split("$").length)
                     });
 
                      var area = new ApexCharts(document.querySelector("#area"), areaOptions);
@@ -850,25 +859,44 @@ $('#cancelBtn').click(function(){
 // ***********************************************************************************
 
 // ********************* below code to convert table to JSON ****************
+
+const replaceLineBreaksBetweenDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"[^"]*(?:""[^"]*)*"/g, function(m) { return m.replace(/\n/g, ''); })
+        }
+
+        const removeDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"/g, "")
+        }
+
+        const splitLineHavingTabspaceAndMakeJsonObject=(line)=>{
+            var arr = line.split('\t');
+            return {title:arr[0],link:arr[1]}
+        }
+        
+        const loopThroughEachLine=(inputValue)=>{
+            inputValue=replaceLineBreaksBetweenDoubleQuotes(inputValue);
+
+            var lines = inputValue.split('\n').filter((n) => n.length > 0);
+            var linksArray=[]
+            for(var i = 0;i < lines.length;i++){
+
+                const line=removeDoubleQuotes(lines[i]);
+                const linkObject=splitLineHavingTabspaceAndMakeJsonObject(line)
+                linksArray.push(linkObject);
+
+            }
+            return linksArray;
+        }
+        
 var assetLinkJson;
 $(document).ready(function(){
             $("#asset-link-data").on("input",function(e){
                
                 var inputValue=$(e.target).val();
-                inputValue=inputValue.replace(/\"(\n*(.+)\n*)\"/g,"$2");
-                // inputValue=inputValue.replace(/\n+\"/g,"");
-                 inputValue=inputValue.replaceAll("\"","");
-                 inputValue=inputValue.replace(/"*(.*\n*)"*\t(.*)\n/g,`{"title": "$1","link": "$2"},`) 
-                 inputValue=inputValue.replaceAll("\n","");
-                inputValue=inputValue.slice(0, -1);//remove last comma
-                inputValue=inputValue.replace(/\"\s+/g,`"`) //remove starting spaces
-                inputValue=inputValue.replace(/\s+\"/g,`"`) //remove ending spaces
-                inputValue="["+inputValue+ "]"
-                console.log(inputValue);
-                 assetLinkJson=JSON.parse(inputValue);
-                console.log(assetLinkJson);
-                console.log(assetLinkJson.length);
-
+                inputValue=loopThroughEachLine(inputValue);
+                  
+                  assetLinkJson=inputValue;
+                  console.log(assetLinkJson);  
             });
         });
 
@@ -905,7 +933,7 @@ $(document).ready(function(){
                   contentType: "application/json; charset=utf-8",
                   encode: true,
                 }).done(function (data) {
-                  console.log(data);
+                //   console.log(data);
                   // $("#cancelBtn").click();
                   swal.fire({
                             title: "Data Added Successfully",

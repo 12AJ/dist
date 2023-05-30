@@ -56,6 +56,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item  ">
+                            <a href="notes.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Notes</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -73,9 +80,9 @@
                     <div class="row match-height">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <h4 class="card-title">Campaign Form</h4>
-                                </div>
+                                </div> -->
                                 <div class="card-content">
                                     <div class="card-body">
                                         <form class="form">
@@ -94,8 +101,8 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="campaign-id-column">Campaign ID</label>
-                                                        <input type="number" min="0" id="campaign-id-column" class="form-control"
-                                                            placeholder="Campaign ID" name="lname-column" required>
+                                                        <input type="text" id="campaign-id-column" class="form-control"
+                                                            placeholder="Campaign ID" name="lname-column" >
                                                     </div>
                                                 </div>
 
@@ -118,44 +125,47 @@
                                                       <label for="category-select">Category</label>
 
                                                       
-                                                      <!-- CS options -->
-                                                      <fieldset class="form-group csOptions">
-                                                      <select class="form-select" id="category-select" style="width: 210px;">
-                                                        <option value="TGIF (email marketing)">TGIF</option>
-                                                        <option value="ACE">ACE</option>
-                                                        <option value="VIBE">VIBE</option>
-                                                        <option value="IP">IP</option>
-                                                        <option value="TAJ (ARC)">TAJ (ARC)</option>
-                                                        <option value="RAY (INSTA)">RAY (INSTA)</option>
-                                                        <option value="MTH">MTH</option>
-                                                        <option value="Magento">Magento</option>
-                                                        <option value="W8 (CS)">W8 (CS)</option>
+                                                      
+                                                      <fieldset class="form-group ">
+                                                      <select class="form-select" id="category-select" style="width: 210px;" required>
+                                                        <option  value="">Select</option>
+                                                        <!-- CS options -->
+                                                        
+                                                        <option class="csOptions" value="TGIF (email marketing)">TGIF (email marketing)</option>
+                                                        <option class="csOptions" value="ALPHA (ACE)">ALPHA (ACE)</option>
+                                                        <option class="csOptions" value="VIBE">VIBE</option>
+                                                        <option class="csOptions" value="IP">IP</option>
+                                                        <option class="csOptions" value="TAJ (ARC)">TAJ (ARC)</option>
+                                                        <option class="csOptions" value="RAY (INSTA)">RAY (INSTA)</option>
+                                                        <option class="csOptions" value="MTH">MTH</option>
+                                                        <option class="csOptions" value="PHANTOM (Magento)">PHANTOM (Magento)</option>
+                                                        <option class="csOptions" value="W8 (CS)">W8 (CS)</option>
+                                                        <option class="csOptions" value="CIVIC">CIVIC</option>
+                                                        <option class="csOptions" value="EAGLE">EAGLE</option>
+
+                                                      <!-- Survey options -->
+                                                   
+                                                        <option class="surveyOptions" value="PKT">PKT</option>
+                                                        <option class="surveyOptions" value="API">API</option>
+                                                        <option class="surveyOptions" value="W8-RB">W8-RB</option>
+                                                        <option class="surveyOptions" value="W8-LE">W8-LE</option>
+                                                        <option class="surveyOptions" value="W8-LA">W8-LA</option>
+                                                        <option class="surveyOptions" value="W8-Techscore">W8-Techscore</option>
+                                                        <option class="surveyOptions" value="ITBP-Techscore">ITBP-Techscore</option>
+                                                        <option class="surveyOptions" value="MTH API">MTH API</option>
+                                                        <option class="surveyOptions" value="ITBP PKT (.NET)">ITBP PKT (.NET)</option>
+                                                        <option class="surveyOptions" value="Email ijp">Email IJP</option>
+                                                 
+
+                                                    <!-- E Blast options -->
+                                                   
+                                                        <option class="eblastOptions" value="ACE eblast">ACE eblast</option>
+                                                    <option class="eblastOptions" value="W8 eblast">W8 eblast</option>
+                                                    
                                                     </select>
                                                   </fieldset>
 
-                                                  <!-- Survey options -->
-                                                  <fieldset class="form-group surveyOptions" style="display: none;">
-                                                    <select class="form-select" id="category-select" style="width: 210px;">
-                                                      <option value="PKT">PKT</option>
-                                                      <option value="API">API</option>
-                                                      <option value="W8-RB">W8-RB</option>
-                                                      <option value="W8-LE">W8-LE</option>
-                                                      <option value="W8-LA">W8-LA</option>
-                                                      <option value="W8-Techscore">W8-Techscore</option>
-                                                      <option value="ITBP-Techscore">ITBP-Techscore</option>
-                                                      <option value="MTH API">MTH API</option>
-                                                      <option value="ITBP PKT (.NET)">ITBP PKT (.NET)</option>
-                                                      <option value="Email ijp">Email IJP</option>
-                                                  </select>
-                                                </fieldset>
-
-                                                 <!-- E Blast options -->
-                                                 <fieldset class="form-group eblastOptions" style="display: none;">
-                                                  <select class="form-select" id="category-select" style="width: 210px;">
-                                                    <option value="ACE eblast">ACE eblast</option>
-                                                    <option value="W8 eblast">W8 eblast</option>
-                                                </select>
-                                              </fieldset>
+                                                
                                                   </div>
                                               </div>
                                       
@@ -166,6 +176,7 @@
                                                           <select class="form-select" id="country-select"  style="width: 210px;">
                                                             <option value="EU">EU</option>
                                                             <option value="NON-EU">NON-EU</option>
+                                                            <option value="Both">Both</option>
                                                         </select>
                                                       </fieldset>
                                                     </div>
@@ -241,8 +252,6 @@
     <script src="assets/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
-        <!-- this is dependency required to convert excel data to json -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
     <script src="./assets/js/extensions/sweetalert2.js"></script>
     <script src="./assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
   <script>
@@ -262,13 +271,12 @@ var userDetails;
                             })
        }
     // ************************** below code change category acording to client code **********************
-    
-    $("#client-code-select").change(function(){
-      if ($(this).val()=='Survey') {
+    function changeCategory() {
+        if ($("#client-code-select").val()=='Survey') {
         $(".csOptions").css("display", "none");
         $(".eblastOptions").css("display", "none");                                         
         $(".surveyOptions").css("display", "inline-block");
-      }else if($(this).val()=='CS'){
+      }else if($("#client-code-select").val()=='CS'){
         $(".csOptions").css("display", "inline-block");
         $(".surveyOptions").css("display", "none");     
         $(".eblastOptions").css("display", "none");                                                                             
@@ -278,6 +286,9 @@ var userDetails;
         $(".eblastOptions").css("display", "inline-block");                                         
 
       }
+    }changeCategory();
+    $("#client-code-select").change(function(){
+        changeCategory();
 });
 $("#resetBtn").click(function(){
         $(".csOptions").css("display", "inline-block");
@@ -285,27 +296,49 @@ $("#resetBtn").click(function(){
         $(".eblastOptions").css("display", "none");                                         
                                    
 });
-
+$("#category-select").change(function(){
+console.log($('#category-select').val());
+});
 
 // ********************* below code to convert table to JSON ****************
+
+const replaceLineBreaksBetweenDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"[^"]*(?:""[^"]*)*"/g, function(m) { return m.replace(/\n/g, ''); })
+        }
+
+        const removeDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"/g, "")
+        }
+
+        const splitLineHavingTabspaceAndMakeJsonObject=(line)=>{
+            var arr = line.split('\t');
+            return {title:arr[0],link:arr[1]}
+        }
+        
+        const loopThroughEachLine=(inputValue)=>{
+            inputValue=replaceLineBreaksBetweenDoubleQuotes(inputValue);
+
+            var lines = inputValue.split('\n').filter((n) => n.length > 0);
+            var linksArray=[]
+            for(var i = 0;i < lines.length;i++){
+
+                const line=removeDoubleQuotes(lines[i]);
+                const linkObject=splitLineHavingTabspaceAndMakeJsonObject(line)
+                linksArray.push(linkObject);
+
+            }
+            return linksArray;
+        }
+
+   
 let assetLinkJson;
 $(document).ready(function(){
             $("#asset-link-data").on("input",function(e){
                 var inputValue=$(e.target).val();
-                inputValue=inputValue.replace(/\"(\n*(.+)\n*)\"/g,"$2");
-                // inputValue=inputValue.replace(/\n+\"/g,"");
-                 inputValue=inputValue.replaceAll("\"","");
-                 inputValue=inputValue.replace(/"*(.*\n*)"*\t(.*)\n/g,`{"title": "$1","link": "$2"},`) 
-                 inputValue=inputValue.replaceAll("\n","");
-                inputValue=inputValue.slice(0, -1);//remove last comma
-                inputValue=inputValue.replace(/\"\s+/g,`"`) //remove starting spaces
-                inputValue=inputValue.replace(/\s+\"/g,`"`) //remove ending spaces
-                inputValue="["+inputValue+ "]"
-                console.log(inputValue);
-                 assetLinkJson=JSON.parse(inputValue);
-                console.log(assetLinkJson);
-                console.log(assetLinkJson.length);
-
+                inputValue=loopThroughEachLine(inputValue);
+                  
+                 assetLinkJson=inputValue;
+                 console.log(assetLinkJson);    
             });
         });
               
@@ -314,9 +347,10 @@ $(document).ready(function(){
                             e.preventDefault();
                             let cnameAddDash = $("#campaign-name-column").val();
                       cnameAddDash = cnameAddDash.replaceAll(' ', '-');
+                      cnameAddDash = cnameAddDash.replaceAll('_', '-');
                       let tempr=true;
                       while(tempr){
-                        console.log(cnameAddDash)
+                      
                         if (cnameAddDash.includes('--')) {
                             cnameAddDash = cnameAddDash.replaceAll('--', '-'); 
                         }
@@ -334,7 +368,7 @@ $(document).ready(function(){
                       contentType: "application/json; charset=utf-8",
                       encode: true,
                     }).done(function (data) {
-                      console.log(data.length);
+                    
                       if(data.length==0){
                         
                         $('#campaign-name-column').css('border', '1px solid green');
@@ -365,8 +399,7 @@ $(document).ready(function(){
                       username:userDetails.firstname,
                       userid:userDetails.username
                     };
-                    console.log(formData)
-                                                                          
+                                              
                     $.ajax({
                       type: "POST",
                       url: "http://localhost:1010/app/v1/form-data",
@@ -375,7 +408,7 @@ $(document).ready(function(){
                       contentType: "application/json; charset=utf-8",
                       encode: true,
                     }).done(function (data) {
-                      console.log(data);
+                    
                       $("#resetBtn").click();
                       swal.fire({
                                 title: "Data Added Successfully",

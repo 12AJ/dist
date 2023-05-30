@@ -201,8 +201,8 @@ tr:last-of-type td:last-of-type {
     background-color: white;
 
 }
-#usersTable1>tbody>tr:nth-child(even) {
-            background-color: rgb(229, 235, 229);
+#usersTable1>tbody>tr:nth-child(odd) {
+            background-color: rgb(240, 240, 240);
         }
 
         #usersTable2{
@@ -221,8 +221,8 @@ tr:last-of-type td:last-of-type {
     background-color: white;
 
 }
-#usersTable2>tbody>tr:nth-child(even) {
-            background-color: rgb(229, 235, 229);
+#usersTable2>tbody>tr:nth-child(odd) {
+    background-color: rgb(240, 240, 240);
         }
 
     </style>
@@ -272,7 +272,7 @@ tr:last-of-type td:last-of-type {
     <div class="col-md-6 col-12">
         <div class="form-group">
             <label for="campaign-id">Campaign ID</label>
-            <input type="number" id="campaign-id" class="form-control"
+            <input type="text" id="campaign-id" class="form-control"
                 placeholder="Campaign ID" readonly>
         </div>
     </div>
@@ -280,7 +280,7 @@ tr:last-of-type td:last-of-type {
     
     <div class="col-md-3 col-12">
       <div class="form-group">
-          <label for="client-code">Client Code</label>
+          <label for="client-code">Category</label>
           <fieldset class="form-group">
     <input type="text" id="client-code" class="form-control"
                 placeholder="Client Code"  readonly>
@@ -295,7 +295,7 @@ tr:last-of-type td:last-of-type {
 
   <div class="col-md-3 col-12">
     <div class="form-group">
-        <label for="category">Category</label>
+        <label for="category">Client Code</label>
 
         
         <!-- CS options -->
@@ -386,7 +386,7 @@ tr:last-of-type td:last-of-type {
 
     <div id="app">
         <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
+            <div class="sidebar-wrapper active" style="z-index: 20;">
                 <div class="sidebar-header py-0">
                     <div class="d-flex justify-content-center">
                         <div class="logo">
@@ -422,7 +422,12 @@ tr:last-of-type td:last-of-type {
                             </a>
                         </li>
 
-                        
+                        <li class="sidebar-item  ">
+                            <a href="notes.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Notes</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
@@ -486,11 +491,11 @@ tr:last-of-type td:last-of-type {
                     <div style="background-color: white; display: flex;justify-content: space-evenly; position: absolute;width: 90%; height: 25px; z-index: 10; top: 20px; ">
                         
                         <p>From</p>
-                        <input style="color: #607080;" type="date" name="" id="fromDate">
+                        <input style="color: #607080; border: 1px solid #dce7f1;border-radius: 0.2rem;padding: 0.20rem 0.5rem;" type="date" name="" id="fromDate">
                    
                  
                         <p>To</p>
-                        <input style="color: #607080;" type="date" name="" id="toDate">
+                        <input style="color: #607080; border: 1px solid #dce7f1;border-radius: 0.2rem;padding: 0.20rem 0.5rem;" type="date" name="" id="toDate">
                         <button class="btn btn-success" id="dateBtn" style="padding: 3px 5px 5px 5px;" > <i class="bi bi-search"></i> </button>
                        
                             <span  id="boot-icon" data-bs-toggle="dropdown" onMouseOver="this.style.background='#d5d9d5'" onMouseOut="this.style.background='#FFFF'" style="cursor: pointer;height: auto;padding-top: 3px; border-radius: 40%; text-align: center;"><i class="bi bi-three-dots-vertical"></i></span>
@@ -574,8 +579,7 @@ tr:last-of-type td:last-of-type {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script  src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
-        <!-- this is dependency required to convert excel data to json -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
+    
     <script src="./assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
@@ -618,7 +622,7 @@ $('.searchBoxOuter').focusout(function(){
         $('#dashSearch').on('input', function(e) {
             let userData = e.target.value;
             userData=userData.replaceAll(' ','-');
-
+            $('#dashSearch').val(userData);
             if (userData.length >= 4) {
                 // ajax code here to fetch list continuisly
                 $.ajax({
@@ -692,16 +696,7 @@ $('.searchBoxOuter').focusout(function(){
     
         
                     
-                
-    </script>
-    <script>
-      
-      
-       
-    </script>
-
-
-    <script>
+            
          // below code is for popup nav************************************************************
 
          $('#add-links-tab').click(function (e) { 
@@ -771,25 +766,43 @@ $('#cancelBtn').click(function(){
 // ***********************************************************************************
 
 // ********************* below code to convert table to JSON ****************
+
+const replaceLineBreaksBetweenDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"[^"]*(?:""[^"]*)*"/g, function(m) { return m.replace(/\n/g, ''); })
+        }
+
+        const removeDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"/g, "")
+        }
+
+        const splitLineHavingTabspaceAndMakeJsonObject=(line)=>{
+            var arr = line.split('\t');
+            return {title:arr[0],link:arr[1]}
+        }
+        
+        const loopThroughEachLine=(inputValue)=>{
+            inputValue=replaceLineBreaksBetweenDoubleQuotes(inputValue);
+
+            var lines = inputValue.split('\n').filter((n) => n.length > 0);
+            var linksArray=[]
+            for(var i = 0;i < lines.length;i++){
+
+                const line=removeDoubleQuotes(lines[i]);
+                const linkObject=splitLineHavingTabspaceAndMakeJsonObject(line)
+                linksArray.push(linkObject);
+
+            }
+            return linksArray;
+        }
 var assetLinkJson;
 $(document).ready(function(){
             $("#asset-link-data").on("input",function(e){
                
                 var inputValue=$(e.target).val();
-                inputValue=inputValue.replace(/\"(\n*(.+)\n*)\"/g,"$2");
-                // inputValue=inputValue.replace(/\n+\"/g,"");
-                 inputValue=inputValue.replaceAll("\"","");
-                 inputValue=inputValue.replace(/"*(.*\n*)"*\t(.*)\n/g,`{"title": "$1","link": "$2"},`) 
-                 inputValue=inputValue.replaceAll("\n","");
-                inputValue=inputValue.slice(0, -1);//remove last comma
-                inputValue=inputValue.replace(/\"\s+/g,`"`) //remove starting spaces
-                inputValue=inputValue.replace(/\s+\"/g,`"`) //remove ending spaces
-                inputValue="["+inputValue+ "]"
-                console.log(inputValue);
-                 assetLinkJson=JSON.parse(inputValue);
-                console.log(assetLinkJson);
-                console.log(assetLinkJson.length);
-
+                inputValue=loopThroughEachLine(inputValue);
+                  
+                  assetLinkJson=inputValue;
+                  console.log(assetLinkJson);  
             });
         });
 
@@ -826,7 +839,7 @@ $(document).ready(function(){
                   contentType: "application/json; charset=utf-8",
                   encode: true,
                 }).done(function (data) {
-                  console.log(data);
+                //   console.log(data);
                   // $("#cancelBtn").click();
                   swal.fire({
                             title: "Data Added Successfully",
@@ -902,9 +915,9 @@ $(document).ready(function(){
                       contentType: "application/json; charset=utf-8",
                       encode: true,
                     }).done(function (data) {
-                     console.log(data);
+                    //  console.log(data);
                         data.forEach(element => {
-                            if(element.Client_Code=='CS'){
+                            if(element.Client_Code=='CS' || element.Client_Code=='eBlast'){
                                 usersList[element.EDM_Completed_By].CS += (element.EDM_link.split("$").length );
                             }else if(element.Client_Code=='Survey'){
                                 usersList[element.EDM_Completed_By].Survey += (element.EDM_link.split("$").length );

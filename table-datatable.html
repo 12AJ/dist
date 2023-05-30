@@ -143,7 +143,7 @@
 
            <form  id="popupForm" style="display: none;">
             <div class="editDetails">
-                <p>Last Updated By : <p id="UpdatedBy"></p></p>
+                <p>Last Updated By : <b id="UpdatedBy"></b></p>
             </div>
          <div class="row">
                                                 
@@ -159,7 +159,7 @@
     <div class="col-md-6 col-12">
         <div class="form-group">
             <label for="campaign-id-column">Campaign ID</label>
-            <input type="number" id="campaign-id-column" class="form-control"
+            <input type="text" id="campaign-id-column" class="form-control"
                 placeholder="Campaign ID" readonly>
         </div>
     </div>
@@ -309,6 +309,13 @@
                             </a>
                         </li>
 
+
+                        <li class="sidebar-item  ">
+                            <a href="notes.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Notes</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -383,8 +390,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script  src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
-        <!-- this is dependency required to convert excel data to json -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
+    
     <script src="./assets/js/extensions/sweetalert2.js"></script>
     <script src="./assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
 
@@ -480,9 +486,9 @@
         
  var min =new Date(fromToDate.fromdate);
  var max = new Date(fromToDate.todate);
- console.log(min);
+ //console.log(min);
  var date = new Date(data[6]) || 0; // use data for the date column
- console.log(date);
+ //console.log(date);
  if (
      (isNaN(min) && isNaN(max)) ||
      (isNaN(min) && date <= max) ||
@@ -517,10 +523,10 @@ $('#cancelBtn').click(function(){
         var row;
         $('#table1').on('click', 'tbody tr', function () {
                  row = table.row(this).data();
-                console.log(row)
+                //console.log(row)
             $('.popupOuter').css({'display':'flex'})
-
-             $("#updatedBy").html(row.Links_Updated_by);
+            
+             $("#UpdatedBy").html(row.Links_Updated_by);
             $("#campaign-name-column").val(row.Campaign_Name);
             $("#campaign-id-column").val(row.CID);
             $("#client-code-select").val(row.Client_Code);
@@ -562,30 +568,45 @@ $('#cancelBtn').click(function(){
 // ***********************************************************************************
 
 // ********************* below code to convert table to JSON ****************
+const replaceLineBreaksBetweenDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"[^"]*(?:""[^"]*)*"/g, function(m) { return m.replace(/\n/g, ''); })
+        }
+
+        const removeDoubleQuotes=(inputValue)=>{
+            return inputValue.replace(/"/g, "")
+        }
+
+        const splitLineHavingTabspaceAndMakeJsonObject=(line)=>{
+            var arr = line.split('\t');
+            return {title:arr[0],link:arr[1]}
+        }
+        
+        const loopThroughEachLine=(inputValue)=>{
+            inputValue=replaceLineBreaksBetweenDoubleQuotes(inputValue);
+
+            var lines = inputValue.split('\n').filter((n) => n.length > 0);
+            var linksArray=[]
+            for(var i = 0;i < lines.length;i++){
+
+                const line=removeDoubleQuotes(lines[i]);
+                const linkObject=splitLineHavingTabspaceAndMakeJsonObject(line)
+                linksArray.push(linkObject);
+
+            }
+            return linksArray;
+        }
+
 let assetLinkJson;
 $(document).ready(function(){
             $("#asset-link-data").on("input",function(e){
                 var inputValue=$(e.target).val();
-                inputValue=inputValue.replace(/\"(\n*(.+)\n*)\"/g,"$2");
-                // inputValue=inputValue.replace(/\n+\"/g,"");
-                 inputValue=inputValue.replaceAll("\"","");
-                 inputValue=inputValue.replace(/"*(.*\n*)"*\t(.*)\n/g,`{"title": "$1","link": "$2"},`) 
-                 inputValue=inputValue.replaceAll("\n","");
-                inputValue=inputValue.slice(0, -1);//remove last comma
-                inputValue=inputValue.replace(/\"\s+/g,`"`) //remove starting spaces
-                inputValue=inputValue.replace(/\s+\"/g,`"`) //remove ending spaces
-                inputValue="["+inputValue+ "]"
-                console.log(inputValue);
-                 assetLinkJson=JSON.parse(inputValue);
-                console.log(assetLinkJson);
-                console.log(assetLinkJson.length);
-
+                inputValue=loopThroughEachLine(inputValue);
+                  
+                  assetLinkJson=inputValue;
+                  console.log(assetLinkJson);  
             });
         });
-    </script>
  
-
-<script>
   // **************************below code is for popup form submission********************
 
   $(document).ready(function () {
@@ -620,7 +641,7 @@ $(document).ready(function(){
                   contentType: "application/json; charset=utf-8",
                   encode: true,
                 }).done(function (data) {
-                  console.log(data);
+                  //console.log(data);
                   // $("#cancelBtn").click();
                   swal.fire({
                             title: "Data Added Successfully",
